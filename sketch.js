@@ -15,7 +15,6 @@ function draw() {
   noStroke()
   fill(40)
   rect(0,0,width,100)
-  p()
 
 
 }
