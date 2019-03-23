@@ -3,6 +3,11 @@
 Going to upload more as I learn more <br>
 
 
+   <b>Update 0.04</b><br>    
+   Massive overhaul!!<br>More mobile friendly
+  <br>More Pages!!
+           
+
  <b>Update 0.03<br></b>
 
  New Layout! again<br> Updated the Articles<br>
