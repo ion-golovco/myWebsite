@@ -82,3 +82,7 @@ a:visited{
     margin:10px 50px;
     float:right;
 }
+.articleA img{
+    width: 100%;
+    padding-top:20px;
+}
