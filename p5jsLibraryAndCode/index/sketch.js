@@ -1,5 +1,6 @@
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight/2);
+    frameRate(60)
 }
 
 function incremental(n, inc) {
@@ -28,8 +29,14 @@ function draw() {
     if(rB==b){b = Math.floor(Math.random() * 256)}
     if (rB > b) {rB = minusIncremental(rB, inc)}
     if (rB < b) {rB = incremental(rB, inc)}
-
+    console.log(rR,rG,rB)
     background(rR,rG,rB)
+    textFont('Helvetica');
+    textAlign(CENTER);
+    textSize(25)
+    fill(rB,rR,rG)
+    text("Not here, keep looking.",width/2,height/2)
+
 }
 
 
