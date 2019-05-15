@@ -1,5 +1,5 @@
 //variables
-let ran = Math.random()*50;
+let ran = Math.random()*10;
 let x11 = 150, x21 = 100, x31 = 350, x41 = 100, x51 = 200
 //Constants
 let inca = 0.003
