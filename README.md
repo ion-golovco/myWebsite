@@ -25,7 +25,3 @@ Going to upload more as I learn more <br>
  <b>Update 0.01<br></b>
  
  New colors!<br> Some bug fixes<br>
- <br>
- console.log(likes(["Ion"]))<br>
-<br>
-//Ion likes this
