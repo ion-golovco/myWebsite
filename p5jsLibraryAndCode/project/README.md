@@ -1,1 +1,1 @@
-This is a little project i hava been working on.
+This is a little project I have been working on.
