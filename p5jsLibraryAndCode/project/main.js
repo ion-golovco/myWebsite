@@ -1,10 +1,8 @@
 enemy.statUpE()
-
-
 function draw() {
     //First Screen
     attackSpeed++
-    if (attackSpeed >= 122) {
+    if (attackSpeed >= 121) {
         attackSpeed = 0
     }
     check = 0
@@ -35,8 +33,10 @@ function draw() {
 
     //Main Game
     if (accept == 2) {
-
+        count++
         slot++
+        countm++
+
         background(250);
 
         //Small setup
@@ -47,14 +47,18 @@ function draw() {
             player.xp = player.xp + reward;
             reward = 0;
             //story
-
             butto = createButton("Continue");
             butto.position(17, 543);
             butto.mousePressed(startStory);
-
-            setTimeout(removef, 1000)
+            setTimeout(removef,1000)
             //New weapon chance
             let a = chanceOfDrop()
+            let b = shieldChance()
+            if (b > 0) {
+                shield = new Shield(shieldProt())
+                player.maxhealth = player.maxhealth + shield.prot
+                feed.push(["You found a new shield!"])
+            }
             if (a > 0) {
                 weapon = new Weapon(randomRarity(), weaponDamage(), weaponName())
                 player.weapon = weapon.dmg
@@ -82,8 +86,15 @@ function draw() {
         fill(220);
         rect(13, 33, 175, 14, 9);
         rect(18, 52, 150, 4, 5);
-        fill(45, 200, 0);
+
+
+
+        //here!!!
+        fill(0, 160, 0);
         rect(13, 33, whealth, 14, 9);
+
+
+
         textSize(10);
         fill(255, 204, 0)
         rect(18, 52, wxp, 4, 5);
@@ -101,10 +112,10 @@ function draw() {
         //Feed
         textSize(13);
         let x = (windowWidth / 11) * 7
-        let y = 20
+        let y = 30
         let y1 = 150
 
-        for (let i = feed.length; i >= feed.length - 5; i--) {
+        for (let i = feed.length; i >= feed.length - 7; i--) {
             if (feed[i]) {
                 text(feed[i], x, y)
                 y = y + 15
@@ -127,7 +138,7 @@ function draw() {
         stroke(150)
         strokeWeight(3)
         fill(250)
-        rect(15, 120, 180, 50, 5)
+        rect(15, 120, 180, 60, 5)
         rare = weaponRarity(weapon.rarity)
         fill(rare[1], rare[2], rare[3])
         stroke(0)
@@ -140,8 +151,9 @@ function draw() {
         textSize(12)
         text("Name : " + weapon.name, 60, 140)
         text("Damage : " + weapon.dmg, 60, 156)
+        text("Protection : " + shield.prot, 60, 172)
         //Player damage
-        text("Player damage : " + Math.round(player.dmg), 15, 187)
+        text("Player damage : " + Math.round(player.dmg), 15, 200)
 
         if (indez <= 1) {
 
@@ -158,8 +170,36 @@ function draw() {
 
         text("Attack", 43, 289)
         text("Continue", 40, 242)
+        //Player
 
+
+        //fill(pred, 0, pGotHit)
+        tint(pred, 0, pGotHit)
+        image(sprite,px,ey, img.width * 2, img.height * 2)
+        //rect(px, ey, 100, 74)
+        if (active == true) {
+            px = arr[count]
+        }
         //Enemy
+        if (enemy.dmg > 0) {
+            let ehealth = (enemy.health / enemy.maxhealth) * 100
+            stroke(0)
+            fill(220)
+            rect(ex, ey - 12, 100, 4, 5)
+            fill(0, 125, 0)
+            rect(ex, ey - 12, ehealth, 4, 5)
+            tint(ered, enGotHit, 0)
+            //fill(ered, enGotHit, 0)
+            image(enemySprite,ex,ey)
+            //rect(ex, ey, 100, 74)
+        }
+        if (activeProj == true) {
+            projx = for2[countm]
+        }
+        fill(0)
+        rect(projx, ey + 20, 10, 3)
+
+        //Enemy hit
         if (indez > 0) {
             damageP()
         }

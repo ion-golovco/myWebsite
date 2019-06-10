@@ -12,7 +12,7 @@ class Player {
     }
     levelup() {
         let xp = this.xp
-        let co = 0.1
+        let co = 0.3
         if (xp >= limit) {
             //Upgrading skills
             this.xp = this.xp - limit
@@ -20,7 +20,7 @@ class Player {
             this.timeslvlup++
             limit = limit + limit * co
             this.maxhealth = this.maxhealth + this.maxhealth / this.lvl
-            this.dmg = this.maxhealth * 0.45 * (this.weapon / 10)
+            this.dmg = this.maxhealth * 0.40 + this.weapon
             feed.push(["You Are now level " + this.lvl])
 
             //New rank
@@ -44,9 +44,11 @@ class Player {
     }
     hit(edmg) {
         this.health = this.health - edmg
+        if(enemy.dmg > 0){
+            //animateProjectiles()
+        }
         if (this.health <= 0) {
-            this.health = 1
-            this.xp = 0
+            fightB.remove()
             accept++
             return "you died"
         }
@@ -59,6 +61,7 @@ class Enemy {
         this.name = _name
         this.dmg = 17
         this.health = 125
+        this.maxhealth = 0
     }
 
     hit(pdmg) {
@@ -72,6 +75,7 @@ class Enemy {
     }
 
     statUpE() {
+        this.maxhealth = this.health * this.lvl / 2
         this.health = this.health * this.lvl / 2
         this.dmg = this.dmg * this.lvl / 2
     }
@@ -90,4 +94,15 @@ class enemyDead {
     constructor(){
         this.dmg = 0
     }
+    hit(){
+    }
+    statUpE(){
+    }
 }
+
+class Shield {
+    constructor(_prot){
+        this.prot = _prot
+    }
+}
+
