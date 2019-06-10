@@ -50,7 +50,7 @@ function draw() {
             butto = createButton("Continue");
             butto.position(17, 543);
             butto.mousePressed(startStory);
-            setTimeout(removef,1000)
+            setTimeout(removef,1300)
             //New weapon chance
             let a = chanceOfDrop()
             let b = shieldChance()
