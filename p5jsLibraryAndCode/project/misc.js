@@ -56,7 +56,7 @@ function weaponRarity(a) {
     return rarities[a]
 }
 function weaponDamage() {
-    let maxdamage = 25
+    let maxdamage = 12
     let damage = random(1, 2.5)
     return Math.round(damage * maxdamage)
 }
