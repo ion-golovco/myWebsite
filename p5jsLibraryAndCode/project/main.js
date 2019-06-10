@@ -175,7 +175,7 @@ function draw() {
 
         //fill(pred, 0, pGotHit)
         tint(pred, 0, pGotHit)
-        image(sprite,px,ey, img.width * 2, img.height * 2)
+        image(sprite,px,ey, sprite.width * 2, sprite.height * 2)
         //rect(px, ey, 100, 74)
         if (active == true) {
             px = arr[count]
@@ -190,7 +190,7 @@ function draw() {
             rect(ex, ey - 12, ehealth, 4, 5)
             tint(ered, enGotHit, 0)
             //fill(ered, enGotHit, 0)
-            image(enemySprite,ex,ey)
+            image(enemySprite,ex,ey, enemySprite.width * 2, enemySprite.height * 2)
             //rect(ex, ey, 100, 74)
         }
         if (activeProj == true) {
