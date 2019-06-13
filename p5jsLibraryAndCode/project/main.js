@@ -129,7 +129,7 @@ function draw() {
 
 
         //Equiped weapon
-        if(enemy.dmg=0){
+        if(enemy.dmg==0){
             removef()
         }
         stroke(0)
