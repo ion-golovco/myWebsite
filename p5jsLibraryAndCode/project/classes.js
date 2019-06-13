@@ -20,7 +20,7 @@ class Player {
             this.timeslvlup++
             limit = limit + limit * co
             this.maxhealth = this.maxhealth + this.maxhealth / this.lvl
-            this.dmg = this.maxhealth * 0.40 + this.weapon
+            this.dmg = (this.maxhealth * 0.40) + this.weapon
             feed.push(["You Are now level " + this.lvl])
 
             //New rank
@@ -48,7 +48,7 @@ class Player {
             //animateProjectiles()
         }
         if (this.health <= 0) {
-            fightB.remove()
+            setTimeout(removef,1200)
             accept++
             return "you died"
         }
@@ -68,6 +68,7 @@ class Enemy {
         this.health = this.health - pdmg
         hits++
         if (this.health <= 0) {
+            setTimeout(removef,1200)
             reward = (this.lvl / 2) * 10
             feed.push(["You killed " + this.name + " and got " + reward + " xp"])
             hits = 0

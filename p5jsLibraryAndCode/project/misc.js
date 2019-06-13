@@ -56,8 +56,8 @@ function weaponRarity(a) {
     return rarities[a]
 }
 function weaponDamage() {
-    let maxdamage = 12
-    let damage = random(1, 2.5)
+    let maxdamage = 10
+    let damage = random(1, 2)
     return Math.round(damage * maxdamage)
 }
 function weaponName() {
@@ -135,7 +135,7 @@ function story() {
 
 function attack() {
     fightB.remove()
-    setTimeout(figthbb, 1200)
+    setTimeout(figthbb, 1100)
     animator()
 }
 
@@ -157,24 +157,20 @@ function damageP() {
 }
 function edamageR() {
     enemy.hit(player.dmg)
-    enGotHit = 0
     ered = 125
     setTimeout(edamageR2, 80)
 }
 function edamageR2() {
-    enGotHit = 125
-    ered = 0
+    ered = 255
     hit.play()
 }
 function pdamageR() {
     player.hit(enemy.dmg)
-    pGotHit = 0
     pred = 125
     setTimeout(pdamageR2, 100)
 }
 function pdamageR2() {
-    pGotHit = 125
-    pred = 0
+    pred = 255
     hurt.play()
 }
 // let enGotHit = 125

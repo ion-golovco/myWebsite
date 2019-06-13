@@ -36,7 +36,9 @@ function draw() {
         count++
         slot++
         countm++
-
+        if(enemy.dmg = 0){
+            removef()
+        }
         background(250);
 
         //Small setup
@@ -174,7 +176,7 @@ function draw() {
 
 
         //fill(pred, 0, pGotHit)
-        tint(pred, 0, 0)
+        tint(pred, 255, 255)
         image(sprite,px,ey, sprite.width * 2, sprite.height * 2)
         //rect(px, ey, 100, 74)
         if (active == true) {
@@ -188,7 +190,7 @@ function draw() {
             rect(ex, ey - 12, 100, 4, 5)
             fill(0, 125, 0)
             rect(ex, ey - 12, ehealth, 4, 5)
-            tint(ered, 0, 0)
+            tint(ered, 255, 255)
             //fill(ered, enGotHit, 0)
             image(enemySprite,ex,ey, enemySprite.width * 2, enemySprite.height * 2)
             //rect(ex, ey, 100, 74)

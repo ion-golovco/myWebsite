@@ -59,10 +59,9 @@ let activeProj;
 
 let projx;
 
-let enGotHit = 125;
-let pGotHit = 125;
-let ered = 0;
-let pred = 0;
+
+let ered = 255;
+let pred = 255;
 
 let hit;
 let hurt;
