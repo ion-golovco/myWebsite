@@ -42,9 +42,9 @@ body{
     color:#E4F0D0;
 }
 .gallery{
-padding:6% 12%;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0,0);
-background: #738290;
+    padding:6% 12%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0,0);
+    background: #738290;
 }
 .article{
     margin-top:7px;
@@ -86,19 +86,29 @@ a:visited{
     width: 100%
 }
 button{
-  position: absolute;
-  top: 5px;
-  right:80px;
-  background-color: 80;
-  border: none;
-  color: white;
-  padding: 10px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+    position: absolute;
+    top: 5px;
+    right:80px;
+    background-color: lightgray;
+    border: none;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
   
 }
 p{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.inputs{
+    width: 40%;
+    height: 30%;
+    word-wrap: break-word 2px;
+}
+.area{
+    cursor:default;
+    color: transparent;
+    padding:15px;
 }
