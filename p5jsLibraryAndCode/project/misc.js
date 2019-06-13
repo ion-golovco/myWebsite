@@ -114,6 +114,8 @@ function change() {
 }
 
 function startStory() {
+    enemy = new Enemy(enemyLevel(player.lvl), randomName());
+    enemy.statUpE()
     fightB = createButton("Attack");
     fightB.position(17, 590);
     fightB.mousePressed(attack);
@@ -123,8 +125,6 @@ function startStory() {
 
     story()
     console.log(enemy)
-    enemy = new Enemy(enemyLevel(player.lvl), randomName());
-    enemy.statUpE()
     storyP++
     console.log(enemy)
 }
