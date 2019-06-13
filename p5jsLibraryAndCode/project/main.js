@@ -2,7 +2,7 @@ enemy.statUpE()
 function draw() {
     //First Screen
     attackSpeed++
-    if (attackSpeed >= 121) {
+    if (attackSpeed > 121) {
         attackSpeed = 0
     }
     check = 0
@@ -36,7 +36,7 @@ function draw() {
         count++
         slot++
         countm++
-        if(enemy.dmg = 0){
+        if(enemy.dmg == 0){
             removef()
         }
         background(250);
@@ -44,7 +44,6 @@ function draw() {
         //Small setup
         if (reward > 0) {
             enemyKilled++
-
             enemy = new enemyDead()
             player.xp = player.xp + reward;
             reward = 0;
@@ -67,9 +66,6 @@ function draw() {
                 feed.push(["You found a new weapon ! (" + weapon.name + ")"])
             }
         }
-
-
-
 
         player.levelup();
         player.powerMove(player.dmg)
@@ -158,7 +154,6 @@ function draw() {
         text("Player damage : " + Math.round(player.dmg), 15, 200)
 
         if (indez <= 1) {
-
             butto.position(17, 543);
             butto.mousePressed(startStory);
         }
@@ -175,7 +170,7 @@ function draw() {
         //Player
 
 
-        //fill(pred, 0, pGotHit)
+        //fill(pred, 255, 255)
         tint(pred, 255, 255)
         image(sprite,px,ey, sprite.width * 2, sprite.height * 2)
         //rect(px, ey, 100, 74)
@@ -191,7 +186,7 @@ function draw() {
             fill(0, 125, 0)
             rect(ex, ey - 12, ehealth, 4, 5)
             tint(ered, 255, 255)
-            //fill(ered, enGotHit, 0)
+            //fill(ered, 255, 255)
             image(enemySprite,ex,ey, enemySprite.width * 2, enemySprite.height * 2)
             //rect(ex, ey, 100, 74)
         }
@@ -201,8 +196,9 @@ function draw() {
         fill(0)
         rect(projx, ey + 20, 10, 3)
 
-        //Enemy hit
+//Enemy hit
         if (indez > 0) {
+            console.log(indez)
             damageP()
         }
     }

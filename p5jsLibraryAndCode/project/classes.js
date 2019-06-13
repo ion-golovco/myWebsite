@@ -74,11 +74,10 @@ class Enemy {
             hits = 0
         }
     }
-
     statUpE() {
         this.maxhealth = this.health * this.lvl / 2
         this.health = this.health * this.lvl / 2
-        this.dmg = this.dmg * this.lvl / 2
+        this.dmg = this.dmg * (this.lvl / 2)
     }
 }
 
@@ -95,10 +94,8 @@ class enemyDead {
     constructor(){
         this.dmg = 0
     }
-    hit(){
-    }
-    statUpE(){
-    }
+hit(){}
+statUpE(){}
 }
 
 class Shield {

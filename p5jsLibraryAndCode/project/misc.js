@@ -87,7 +87,8 @@ function stopAnimate() {
     active = false
     px = 400
 }
-function animateProjectiles() {
+function animateProjectiles() { 
+    console.log(countm)
     activeProj = true
     countm = 0
     setTimeout(pdamageR, 100)
@@ -121,10 +122,11 @@ function startStory() {
     indez++
 
     story()
-
+    console.log(enemy)
     enemy = new Enemy(enemyLevel(player.lvl), randomName());
     enemy.statUpE()
     storyP++
+    console.log(enemy)
 }
 function story() {
     let text = text2[storyP].reverse()
@@ -158,7 +160,7 @@ function damageP() {
 function edamageR() {
     enemy.hit(player.dmg)
     ered = 125
-    setTimeout(edamageR2, 80)
+    setTimeout(edamageR2, 100)
 }
 function edamageR2() {
     ered = 255
@@ -176,7 +178,7 @@ function pdamageR2() {
 // let enGotHit = 125
 // let pGotHit = 125
 // let ered = 0
-// let pred = 0
+ //let pred = 0
 function shieldProt() {
     let maxprot = 10
     let prot = random(0.5, 1.5)
