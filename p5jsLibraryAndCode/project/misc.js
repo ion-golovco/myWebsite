@@ -4,11 +4,11 @@ let enemySprite;
 
 function preload() {
 
-    //enemySprite = loadImage('assets/enemy.png');
-    //sprite = loadImage('assets/img.png');
+    enemySprite = loadImage('assets/enemy.png');
+    sprite = loadImage('assets/img.png');
 
-   // hit = loadSound("assets/hit.wav");
-    //hurt = loadSound("assets/hurt.wav");
+    hit = loadSound("assets/hit.wav");
+    hurt = loadSound("assets/hurt.wav");
 
 }
 function setup() {
@@ -198,7 +198,7 @@ function edamageR() {
 }
 function edamageR2() {
     ered = 255
-   // hit.play()
+    hit.play()
 }
 function pdamageR() {
     player.hit(enemy.dmg)
@@ -207,7 +207,7 @@ function pdamageR() {
 }
 function pdamageR2() {
     pred = 255
-   // hurt.play()
+    hurt.play()
 }
 // let enGotHit = 125
 // let pGotHit = 125
