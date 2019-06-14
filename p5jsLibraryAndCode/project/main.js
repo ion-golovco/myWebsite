@@ -225,7 +225,7 @@ function draw() {
         //Player
 
         //fill(255, pred, pred)
-        tint(pred, 255, 255)
+        tint(255, pred, pred)
         image(sprite, px, ey, sprite.width * 2, sprite.height * 2)
         //rect(px, ey, 100, 74)
         if (active == true) {
@@ -242,7 +242,7 @@ function draw() {
             fill(0, 125, 0)
             rect(ex, ey - 12, ehealth, 4, 5)
 
-            tint(ered, 255, 255)
+            tint(255, ered, ered)
             //fill(255, ered, ered)
             image(enemySprite, ex, ey, enemySprite.width * 2, enemySprite.height * 2)
             //rect(ex, ey, 100, 74)
