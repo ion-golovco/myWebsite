@@ -69,3 +69,8 @@ let hurt;
 let for1 = []
 let for2 = []
 let arr = []
+
+let pr
+let pb
+let pg
+

@@ -1,16 +1,20 @@
 //Title 
 let sprite;
 let enemySprite;
+
 function preload() {
-    enemySprite = loadImage('assets/enemy.png');
-    sprite = loadImage('assets/img.png');
-    hit = loadSound("assets/hit.wav");
-    hurt = loadSound("assets/hurt.wav");
+
+    //enemySprite = loadImage('assets/enemy.png');
+    //sprite = loadImage('assets/img.png');
+
+   // hit = loadSound("assets/hit.wav");
+    //hurt = loadSound("assets/hurt.wav");
 
 }
 function setup() {
 
     createCanvas(windowWidth, windowHeight / 2);
+
     button = createButton("Play Now");
     button.position(windowWidth / 2 - 68, windowHeight / 2 + 70);
     button.mousePressed(change);
@@ -21,9 +25,11 @@ function setup() {
     let step = 25
     let pxx = 400
     let exx = 680
+
     for (let i = pxx; i <= exx; i = i + step) {
         for1.push(i)
     }
+
     for (let i = exx; i >= pxx; i = i - step) {
         for2.push(i)
     }
@@ -49,10 +55,13 @@ function enemyLevel(pLevel) {
     return pLevel + chancer[rnum]
 }
 
-
 //Weapon
 function weaponRarity(a) {
-    let rarities = [["C", 102, 51, 153], ["B", 0, 51, 102], ["A", 51, 255, 51], ["S", 255, 204, 0]]
+    let rarities = 
+    [["C", 102, 51, 153], 
+    ["B", 0, 51, 102], 
+    ["A", 51, 255, 51], 
+    ["S", 255, 204, 0]]
     return rarities[a]
 }
 function weaponDamage() {
@@ -79,6 +88,7 @@ function chanceOfDrop() {
 function animator() {
     count = 0
     active = true
+
     setTimeout(stopAnimate, 400)
     setTimeout(edamageR, 160)
 }
@@ -88,7 +98,6 @@ function stopAnimate() {
     px = 400
 }
 function animateProjectiles() { 
-    console.log(countm)
     activeProj = true
     countm = 0
     setTimeout(pdamageR, 100)
@@ -99,23 +108,29 @@ function animateProjectiles() {
 //Important
 function change() {
     accept++
+
     if (accept == 1) {
-        name = createInput();
+
+        name = createInput("Your Name");
+
         name.position(windowWidth / 2 - 95, windowHeight / 2 + 200)
         button.position(windowWidth / 2 - 68, windowHeight / 2 + 240);
 
     }
     if (accept == 2) {
+
         pName = name.value()
         player = new Player(1, 0, pName, weapon.dmg, hp, hp)
+
         button.remove()
         name.remove()
+
     }
+
 }
 
 function startStory() {
-    enemy = new Enemy(enemyLevel(player.lvl), randomName());
-    enemy.statUpE()
+
     fightB = createButton("Attack");
     fightB.position(17, 590);
     fightB.mousePressed(attack);
@@ -124,56 +139,75 @@ function startStory() {
     indez++
 
     story()
-    console.log(enemy)
+
+    enemy = new Enemy(enemyLevel(player.lvl), randomName());
+    enemy.statUpE()
+
     storyP++
-    console.log(enemy)
 }
 function story() {
     let text = text2[storyP].reverse()
+
     for (let i in text) {
+
         storyFeed.push(text[i])
+
     }
+
 }
 
 function attack() {
+
     fightB.remove()
     setTimeout(figthbb, 1100)
     animator()
+
 }
 
 function figthbb() {
+
     if (enemy.dmg > 0) {
+
         fightB = createButton("Attack");
         fightB.position(17, 590);
         fightB.mousePressed(attack);
+
     }
+
 }
 function removef() {
+
     fightB.remove()
+
 }
 function damageP() {
+
     if (attackSpeed >= 120 && enemy.dmg > 0) {
+
         animateProjectiles()
         attackSpeed = 0
+
     }
 }
 function edamageR() {
+
     enemy.hit(player.dmg)
-    ered = 125
+    ered = 0
     setTimeout(edamageR2, 100)
+
 }
 function edamageR2() {
     ered = 255
-    hit.play()
+   // hit.play()
 }
 function pdamageR() {
     player.hit(enemy.dmg)
-    pred = 125
+    pred = 0
     setTimeout(pdamageR2, 100)
 }
 function pdamageR2() {
     pred = 255
-    hurt.play()
+   // hurt.play()
 }
 // let enGotHit = 125
 // let pGotHit = 125

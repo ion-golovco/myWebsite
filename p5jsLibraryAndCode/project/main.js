@@ -1,30 +1,43 @@
 enemy.statUpE()
+
 function draw() {
     //First Screen
     attackSpeed++
+
     if (attackSpeed > 121) {
         attackSpeed = 0
     }
+
     check = 0
+
     fill(0)
     stroke(0)
     strokeWeight(1)
+
     if (accept == 0) {
+
         background(250)
         textSize(32)
+
         text("Press right here to play my totaly awesome game", windowWidth / 2 - 340, 50)
     }
 
     if (accept == 1) {
+
         background(250)
         fill(0)
         textSize(16)
+
         //Bad story
 
         text(text1[0] + race + text1[1], windowWidth / 2 - 300, 50)
+
         let yfortext1 = 70
+
         for (let i = 2; i < text1.length; i++) {
+
             text(text1[i], windowWidth / 2 - 300, yfortext1)
+
             yfortext1 = yfortext1 + 23
         }
 
@@ -33,34 +46,44 @@ function draw() {
 
     //Main Game
     if (accept == 2) {
+
         count++
         slot++
         countm++
-        if(enemy.dmg == 0){
+
+        if (enemy.dmg == 0) {
             removef()
         }
         background(250);
 
         //Small setup
         if (reward > 0) {
+
             enemyKilled++
             enemy = new enemyDead()
+
             player.xp = player.xp + reward;
             reward = 0;
             //story
+
             butto = createButton("Continue");
             butto.position(17, 543);
             butto.mousePressed(startStory);
-            setTimeout(removef,1300)
+
+            setTimeout(removef, 1300)
             //New weapon chance
+
             let a = chanceOfDrop()
             let b = shieldChance()
+
             if (b > 0) {
+
                 shield = new Shield(shieldProt())
                 player.maxhealth = player.maxhealth + shield.prot
                 feed.push(["You found a new shield!"])
             }
             if (a > 0) {
+
                 weapon = new Weapon(randomRarity(), weaponDamage(), weaponName())
                 player.weapon = weapon.dmg
                 feed.push(["You found a new weapon ! (" + weapon.name + ")"])
@@ -85,30 +108,48 @@ function draw() {
         rect(13, 33, 175, 14, 9);
         rect(18, 52, 150, 4, 5);
 
+        if (player.health >= player.maxhealth * 0.65) {
+            pr = 0
+            pb = 0
+            pg = 160
+        } if (player.health <= player.maxhealth * 0.65) {
+            pr = 255
+            pg = 215
+            pb = 0
+        } if (player.health <= player.maxhealth * 0.25) {
+            pr = 178
+            pg = 34
+            pb = 34
+        }
 
-
-        //here!!!
-        fill(0, 160, 0);
+        fill(pr, pg, pb);
         rect(13, 33, whealth, 14, 9);
 
-
-
         textSize(10);
+
         fill(255, 204, 0)
         rect(18, 52, wxp, 4, 5);
+
         fill(0);
 
         text(Math.round(player.health) + "/" + Math.round(player.maxhealth), 16, 44)
         text(Math.round(player.xp) + "/" + Math.round(limit) + " xp", 205, 58);
 
         let k = ranks[index]
-        textSize(21);
-        text("Level : " + lvl, 200, 48);
-        textSize(16);
-        text(player.name + " the " + k, 14, 75);
+        fill(ranks[index][1], ranks[index][2], ranks[index][3])
 
+        textSize(21);
+
+        text("Level : " + lvl, 200, 48);
+
+        textSize(16);
+
+        text(player.name + " the " + k, 14, 75);
+        fill(0)
         //Feed
+
         textSize(13);
+
         let x = (windowWidth / 11) * 7
         let y = 30
         let y1 = 150
@@ -120,6 +161,7 @@ function draw() {
             }
         }
         //Story Feed
+
         noStroke()
         for (let i = storyFeed.length; i >= 0; i--) {
             fill(0, 128, 0)
@@ -127,32 +169,41 @@ function draw() {
             y1 = y1 + 15
         }
 
-
         //Equiped weapon
-        if(enemy.dmg==0){
+        if (enemy.dmg == 0) {
             removef()
         }
+
         stroke(0)
         fill(0)
         textSize(12)
+
         text("Weapon equiped :", 15, 115)
+
         stroke(150)
         strokeWeight(3)
         fill(250)
+
         rect(15, 120, 180, 60, 5)
+
         rare = weaponRarity(weapon.rarity)
+
         fill(rare[1], rare[2], rare[3])
         stroke(0)
         strokeWeight(4)
         textSize(40)
+
         text(rare[0], 24, 160)
+
         //Weapon Stats
         strokeWeight(1)
         fill(0)
         textSize(12)
+
         text("Name : " + weapon.name, 60, 140)
         text("Damage : " + weapon.dmg, 60, 156)
         text("Protection : " + shield.prot, 60, 172)
+
         //Player damage
         text("Player damage : " + Math.round(player.dmg), 15, 200)
 
@@ -164,6 +215,7 @@ function draw() {
         textSize(16)
         noStroke()
         fill(85)
+
         rect(17, 217, 113, 38)
         rect(17, 264, 97, 38)
         fill(0)
@@ -172,11 +224,10 @@ function draw() {
         text("Continue", 40, 242)
         //Player
 
-
-        //fill(pred, 255, 255)
-        tint(pred, 255, 255)
-        image(sprite,px,ey, sprite.width * 2, sprite.height * 2)
-        //rect(px, ey, 100, 74)
+        fill(255, pred, pred)
+        //tint(pred, 255, 255)
+        //image(sprite, px, ey, sprite.width * 2, sprite.height * 2)
+        rect(px, ey, 100, 74)
         if (active == true) {
             px = arr[count]
         }
@@ -184,14 +235,17 @@ function draw() {
         if (enemy.dmg > 0) {
             let ehealth = (enemy.health / enemy.maxhealth) * 100
             stroke(0)
+
             fill(220)
             rect(ex, ey - 12, 100, 4, 5)
+
             fill(0, 125, 0)
             rect(ex, ey - 12, ehealth, 4, 5)
-            tint(ered, 255, 255)
-            //fill(ered, 255, 255)
-            image(enemySprite,ex,ey, enemySprite.width * 2, enemySprite.height * 2)
-            //rect(ex, ey, 100, 74)
+
+            //tint(ered, 255, 255)
+            fill(255, ered, ered)
+            //image(enemySprite, ex, ey, enemySprite.width * 2, enemySprite.height * 2)
+            rect(ex, ey, 100, 74)
         }
         if (activeProj == true) {
             projx = for2[countm]
@@ -199,13 +253,11 @@ function draw() {
         fill(0)
         rect(projx, ey + 20, 10, 3)
 
-//Enemy hit
+        //Enemy hit
         if (indez > 0) {
-            console.log(indez)
             damageP()
         }
     }
-
 
     //You lost
     if (accept == 3) {
