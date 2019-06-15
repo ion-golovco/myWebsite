@@ -1,15 +1,18 @@
 *{
     Padding:0px;
     Margin:0px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 body{
     background:whitesmoke;
 }
+.bodyb{
+    background:rgb(32, 32, 32);
+}
 .nav{
     font-size: 20px;
     padding:15px;
-    color:#FFFCF7;
+    color: #FFFCF7;
     background: #A1B5D8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0,0);
 }
@@ -63,6 +66,7 @@ body{
 .articleA{
     padding: 50px;
     margin:1% 10%;
+    color:#E4F0D0;
     background: #738290;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0,0);
 
@@ -97,18 +101,37 @@ button{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-  
-}
-p{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .inputs{
     width: 40%;
     height: 30%;
     word-wrap: break-word 2px;
 }
+.inputss{
+    width: 100%;
+    height: 70%;
+    word-wrap: break-word 2px;
+}
 .area{
     cursor:default;
     color: transparent;
     padding:15px;
+}
+#classN{
+    color: rgb(255, 203, 107) 
+}
+#utility{
+    color: rgb(137, 221, 255)F 
+}
+#functions{
+    color: rgb(136, 170, 255)
+}
+#this>{
+    color:rgb(255, 75, 83)
+}
+#keys{
+    color: rgb(199, 146, 234)
+}
+#background{
+    background: #212121
 }
