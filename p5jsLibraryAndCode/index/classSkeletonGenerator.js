@@ -56,11 +56,7 @@ function draw() {
     background(44)
 
     fill(255)
-
-    text("Class name", w, he)
-    text("Properties", w, he * 2)
-    text("Functions", w, he * 3)
-
+    
     fill(33)
     rect(we * 5 - 40, he - 50, we * 5, he * 9, 15)
     fill(44)
