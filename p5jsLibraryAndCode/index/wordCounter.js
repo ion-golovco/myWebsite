@@ -27,7 +27,7 @@ function draw() {
 
     if (value.value() == "" || value.value() == " ") {
         text("You haven't written anything yet", x, he + 25)
-        
+
     }
     fill(0)
     for (let i in a) {
@@ -74,7 +74,6 @@ function topTenWords(text) {
     }
 
     let entries = Object.entries(obj);
-
     let sorted = entries.sort((b, a) => a[1] - b[1]);
     //return sorted
 
