@@ -46,15 +46,22 @@ class Player {
     }
     buyArmy() {
         if (this.gold > 10000 && this.food > 10000) {
-            playerArmy.push(new Army(tilesClass[0].x,tilesClass[0].y,"player"))
+            this.food = this.food - 10000
+            this.gold = this.gold - 10000
+            for(let tile in tilesClass){
+                if(tilesClass[tile] == origin){
+                    playerArmy.push(new Army(tilesClass[tile].x,tilesClass[tile].y,"player",20))
+                }
+            }
         }
     }
 }
 class Army {
-    constructor(_x, _y, _t) {
+    constructor(_x, _y, _t,_timer) {
         this.x = _x
         this.y = _y
         this.owned = _t
+        this.time = _timer
     }
     move(tile){
         this.x = tile.x
@@ -62,6 +69,9 @@ class Army {
         tile.a = "player"
         if(tile.owned !== "player" && tile.owned !== undefined){
         } 
+    }
+    cooldown(){
+        this.time = this.time - 1
     }
 }
 class Water {
@@ -139,4 +149,42 @@ class Computer {
             ince++
         }
     }
+    upBarrack(){
+        if (this.gold > 20000 && this.wood > 20000 && this.food > 20000) {
+            this.food = this.food - 20000
+            this.wood = this.wood - 20000
+            this.gold = this.gold - 20000
+            ince++
+            }
+        }
+    buyArmy(){
+        if (this.gold > 10000 && this.food > 10000) {
+            this.gold = this.gold - 10000
+            this.food = this.food - 10000
+            ince++
+            for(let tile in tilesClass){
+                if(tilesClass[tile] == comOrigin){
+                    computerArmy.push(new enemyArmy(tilesClass[tile].x,tilesClass[tile].y,"computer0",10))
+                }
+            }
+        }   
+    }
 } 
+class enemyArmy{
+    constructor(_x, _y, _t,_timer,_target) {
+        this.x = _x
+        this.y = _y
+        this.owned = _t
+        this.time = _timer
+        this.target = _target
+    }
+    move(tile){
+        this.x = tile.x
+        this.y = tile.y
+        tile.a = "computer0"
+    }
+    cooldown(){
+        this.time = this.time - 1
+    }
+    
+}

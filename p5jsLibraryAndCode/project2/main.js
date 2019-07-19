@@ -106,8 +106,6 @@ function draw() {
     fill(230)
     noStroke()
     //Game Ui 
-    rect(0, 0, -310, he)
-
 
     textSize(16)
     fill(0)
@@ -176,19 +174,46 @@ function draw() {
         computer1.buyMarket()
     } else if (list[ince] == 2) {
         computer1.buyLand()
+    } else if (list[ince] == 3) {
+        computer1.upBarrack()
+    } else if (list[ince] == 4) {
+        computer1.buyArmy()
     }
 
-    for(let i of playerArmy){
-        rect(i.x,i.y,w,h)
-    }
-    for(let i of tilesClass){
-        for(let j of playerArmy){
-            if(i.x !== j.x && i.y !== j.y){
+
+    for (let i of tilesClass) {
+        for (let j of playerArmy) {
+            if (i.x !== j.x && i.y !== j.y) {
                 i.a = undefined
             }
         }
     }
+    if (movingArmyA == 1) {
+        for (let t of movingAr) {
+            fill(255, 80)
+            rect(tilesClass[t].x, tilesClass[t].y, w, h)
+        }
+    }
+
+    for (let i of playerArmy) {
+        fill(120, 0, 0)
+        rect(i.x, i.y, w, h)
+    }
+    for (let i of computerArmy) {
+        fill(255,120)
+        rect(i.x, i.y, w, h)
+    }
+    for (let i of playerArmy) {
+        if (i.time >= 0) {
+            i.cooldown()
+        }
+    }
+    for (let i in computerArmy) {
+        if(computerArmy[i].time == -1){
+            moveToTarget(i)
+        }
+        if (computerArmy[i].time >= 0) {
+            computerArmy[i].cooldown()
+        }
+    }
 }
-
-
-

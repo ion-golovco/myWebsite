@@ -25,6 +25,7 @@ function tes(x, y) {
     for (let tile of tilesClass) {
         if (arre[n][0] == tile.x) {
             if (arre[n][1] == tile.y) {
+                origin = tile
                 areaA(tile.x, tile.y)
                 break
             }
@@ -160,6 +161,7 @@ function randomI() {
             randomI()
         } else if (x == spotC.length - 1) {
             spawnE(rn)
+            comOrigin = tilesClass[rn]
             break
         }
         x++
@@ -167,8 +169,6 @@ function randomI() {
 }
 
 function spawnE(rn) {
-    let x = tilesClass[rn].x
-    let y = tilesClass[rn].y
     let arrF = [0, 1, 24]
     let arr = []
     if (spot.length < 10) {
@@ -235,10 +235,12 @@ function place(x, y) {
         }
     }
     let n = arre.length - 1
-    for (let tile of tilesClass) {
-        if (arre[n][0] == tile.x) {
-            if (arre[n][1] == tile.y) {
-                return tile
+    if (arre.length > 0) {
+        for (let tile of tilesClass) {
+            if (arre[n][0] == tile.x) {
+                if (arre[n][1] == tile.y) {
+                    return tile
+                }
             }
         }
     }
@@ -261,35 +263,31 @@ function newLand(tile) {
 
 function buttonMarket(x, y) {
     let n = 310 - w * 6
-    if (
-        (x > n) && (y > h * 5) && (x < n + w * 2 - 20) && (y < h * 5 + h * 2 - 20)
-    ) {
+    if (LocalButtonPress(x, y, n, h * 5)) {
         player1.buyMarket()
     }
 }
 function buttonLand(x, y) {
     let n = 310 - w * 4
-    if (
-        (x > n) && (y > h * 5) && (x < n + w * 2 - 20) && (y < h * 5 + h * 2 - 20)
-    ) {
+    if (LocalButtonPress(x, y, n, h * 5)) {
         player1.buyLand()
     }
 }
 function buttonFarm(x, y) {
     let n = 310 - w * 6
-    if (
-        (x > n) && (y > h * 7) && (x < n + w * 2 - 20) && (y < h * 7 + h * 2 - 20)
-    ) {
+    if (LocalButtonPress(x, y, n, h * 7)) {
         player1.buyFarm()
     }
 }
 
 function randomSelector() {
-    let chancer = [0, 2, 1]
+    let chancer = [ 1, 2, 0,4]
+    list.push(1, 2, 3)
     for (let i = 0; i < 200; i++) {
-        let num = floor(random() * 3)
+        let num = floor(random() * chancer.length)
         list.push(chancer[num])
     }
+
 }
 function buyLandComputer() {
     let num = floor(random() * tilesLeft())
@@ -309,90 +307,156 @@ function buyLandComputer() {
 }
 function buttonBarrackU(x, y) {
     let n = 310 - w * 4
-    if (
-        (x > n) && (y > h * 7) && (x < n + w * 2 - 20) && (y < h * 7 + h * 2 - 20) && barrackU == 0
-    ) {
+    if (LocalButtonPress(x, y, n, h * 7) && barrackU == 0) {
         player1.buyBarrackU()
     }
 }
 function buttonArmy(x, y) {
     let n = 310 - w * 4
-    if (
-        (x > n) && (y > h * 7) && (x < n + w * 2 - 20) && (y < h * 7 + h * 2 - 20) && barrackU == 1
-    ) {
+    if (LocalButtonPress(x, y, n, h * 7) && barrackU == 1) {
         player1.buyArmy()
     }
 }
-function clickOnArmy(x, y) {
-    let arr = []
-    currenter = []
-    for (let tile of tiles) {
-        if (
-            (x >= tile[0]) && (y >= tile[1]) && (x < tile[0] + width) && (y < tile[1] + height)
-        ) {
-            arr = ([tile[0], tile[1]])
-            arr[0] = arr[0] - 297.5
-            for (let i in playerArmy) {
-                if (playerArmy[0].x == arr[0] && playerArmy[0].y == arr[1]) {
-                    timer = 15
-                    timerA = 1
-                    currenter.push([i])
-                    break
-                }
-            }
-            for (let i of tilesClass) {
-                if (arr[0] == i.x && arr[1] == i.y) {
-                    i.a = undefined
-                }
-            }
-            test = 244
-        }
-    }
-    console.log("part1")
-}
-function moverB(x, y) {
-    let arr = []
+
+
+function isItArmyIClicked(x, y) {
+    current = 0
+    til = 0
+    let arre = []
     x = x - 310
-    for (let tile of tiles) {
+    for (let i = 24; i < tiles.length - 24; i++) {
+        if (
+            (x >= tiles[i][0]) && (y >= tiles[i][1]) && (x < tiles[i][0] + width) && (y < tiles[i][1] + height)
+        ) {
+            arre.push([tiles[i][0], tiles[i][1]])
+        }
+    }
+    if (arre.length > 0) {
+        let n = arre.length - 1
+        for (let t in playerArmy) {
+            if (arre[n][0] == playerArmy[t].x) {
+                if (arre[n][1] == playerArmy[t].y) {
+                    current = t
+                    if (playerArmy[t].time >= 10) {
+                        return
+                    }
+                    til = [arre[n][0], arre[n][1]]
+                    for (let t in tilesClass) {
+                        if (tilesClass[t].x == til[0] && tilesClass[t].y == til[1]) {
+                            til = tilesClass[t]
+                            movingArmy(t)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+function movingArmy(t) {
+    movingAr = []
+    let arr = [-24, -1, 0, 1, 24]
+    movingArmyA = 1
+    for (let tile of arr) {
+        movingAr.push(+t + +tile)
+    }
+    clicker = 1
+}
+function movingClick(x, y) {
+    let arre = []
+    x = x - 310
+    let arrr = []
+    for (let j of movingAr) {
+        for (let i in tilesClass) {
+            if (j == i) {
+                arrr.push([tilesClass[i].x, tilesClass[i].y])
+            }
+        }
+    }
+    for (let tile of arrr) {
         if (
             (x >= tile[0]) && (y >= tile[1]) && (x < tile[0] + width) && (y < tile[1] + height)
         ) {
-            arr = ([tile[0], tile[1]])
+            arre.push([tile[0], tile[1]])
         }
     }
-    currenter.push(arr)
-    mover()
-    console.log("part2")
-}
-function mover() {
-    for (let i of tilesClass) {
-        if (currenter[1][0] == i.x && currenter[1][1] == i.y) {
-            playerArmy[currenter[0]].move(i)
-
+    let n = arre.length - 1
+    for (let tile of tilesClass) {
+        if (tile.x == arre[n][0] && tile.y == arre[n][1]) {
+            til = tile
         }
     }
-    currenter = []
-    clicker = 0
-    console.log("part3")
+    if (arre.length >= 1) {
+        playerArmy[current].time = 180
+        playerArmy[current].move(til)
+        clicker = 0
+        movingArmyA = 0
+    }
 }
-
-
 function mousePressed() {
-    if (click == 0) {
-        tes(mouseX, mouseY)
-    } if (buyingLand[0] == 1) {
-        newLand(place(mouseX, mouseY))
-    }
-
     buttonMarket(mouseX, mouseY)
     buttonLand(mouseX, mouseY)
     buttonFarm(mouseX, mouseY)
     buttonBarrackU(mouseX, mouseY)
     buttonArmy(mouseX, mouseY)
-
-    clickOnArmy(mouseX, mouseY)
-    if (clicker == 1) {
-        moverB(mouseX, mouseY)
+    if (click == 0) {
+        tes(mouseX, mouseY)
+    } if (buyingLand[0] == 1) {
+        newLand(place(mouseX, mouseY))
     }
-
+    if (clicker == 1) {
+        movingClick(mouseX, mouseY)
+    } else {
+        isItArmyIClicked(mouseX, mouseY)
+    }
+}
+function LocalButtonPress(x, y, n, by) {
+    if ((x > n) && (y > by) && (x < n + w * 2 - 20) && (y < by + h * 2 - 20)) {
+        return true
+    }
+}
+function targetAssign() {
+    let arr = []
+    for (let tile of tilesClass) {
+        if (tile.owned == "player") {
+            arr.push(tile)
+        }
+    }
+    let num = floor(random() * arr.length)
+    return arr[num]
+}
+function moveToTarget(index) {
+    if (computerArmy[index].target == undefined) {
+        computerArmy[index].target = targetAssign()
+    } else {
+        let indexer
+        for (let t in tilesClass) {
+            if (tilesClass[t].x == computerArmy[index].target.x 
+                && tilesClass[t].y == computerArmy[index].target.y) {
+                    indexer = t
+            }
+        }
+        let moves = []
+        for (let move of possibleMoves(index)) {
+            moves.push([abs(move - indexer),move])
+        }
+        moves = moves.sort((a,b)=>a[0]-b[0])
+        computerArmy[index].time = 10
+        computerArmy[index].move(tilesClass[moves[0][1]])
+    }
+}
+function possibleMoves(index) {
+    let arre = []
+    let arr = [-24, -1, 0, 1, 24]
+    for (let army in computerArmy) {
+        if (index == army) {
+            for (let t in tilesClass) {
+                if (computerArmy[army].x == tilesClass[t].x && computerArmy[army].y == tilesClass[t].y) {
+                    for (let te of arr) {
+                        arre.push(+te + +t)
+                    }
+                }
+            }
+        }
+    }
+    return arre
 }

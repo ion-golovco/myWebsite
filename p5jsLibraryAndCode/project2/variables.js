@@ -19,6 +19,7 @@ let ine = 0
 let ince = 0
 
 let playerArmy = []
+let computerArmy = []
 
 let w, h;
 let we, he;
@@ -34,7 +35,7 @@ let timer = 0, timerA = 0;
 let spot = [], spotA = 0;
 
 let goldB = 600.8; foodB = 700.7; woodB = 700.1
-let goldC = 1.8; foodC = 2.7; woodC = 2.1
+let goldC = 1000.8; foodC = 2000.7; woodC = 2000.1
 let goldCe = 0, foodCe = 0
 
 let goldDe = 0, foodDe = 0
@@ -49,9 +50,18 @@ let upgrades = ["Barracks"]
 let tilesL = 0
 
 let buyingLand = [0]
-let list = []
+let list = [1,2,3]
 let barrackU = 0
 
 let clicker = 0
 let currenter = []
 let test = 0
+
+let movingAr = []
+let movingArmyA = 0
+
+let origin 
+let comOrigin
+
+let current
+let til
