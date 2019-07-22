@@ -1,8 +1,32 @@
+let i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
+    i1 = loadImage("assets/castle.png")
+
+    i2 = loadImage("assets/gameUi.png")
+
+    i3 = loadImage("assets/tilePlain.png")
+    i4 = loadImage("assets/m.png")
+    i5 = loadImage("assets/p.png")
+    i6 = loadImage("assets/w.png")
+
+    i7 = loadImage("assets/unit.png")
+    i8 = loadImage("assets/market.png")
+    i9 = loadImage("assets/barrack.png")
+    i10 =loadImage("assets/land.png")
+    i11 = loadImage("assets/farm.png")
+
+    i12 = loadImage("assets/title.png")
+    i13 = loadImage("assets/back.png")
+
+
     w = (width) / 32
     h = (height) / 16
+
+    wer = windowWidth / 16
+    her = windowHeight / 9
 
     we = windowWidth
     he = windowHeight
@@ -113,6 +137,7 @@ function areaA(x, y) {
         }
     }
     spotA = 1
+    maper = 0
 }
 
 function biomeC() {
@@ -136,15 +161,13 @@ function biomeC() {
 }
 
 function format(value) {
-    if (value > 1000000) {
-        return (value / 1000000).toFixed(1) + " M"
-    } else if (value > 1000) {
+    if (value > 1000) {
         return (value / 1000).toFixed(1) + " k"
     } else {
         return value.toFixed(0)
     }
-}
 
+}
 function noSpot(index) {
     let arrF = [0, 1, 2, 23, 24, 25, 48]
     for (let i of arrF) {
@@ -177,16 +200,17 @@ function spawnE(rn) {
             arr.push(rn - i)
         }
         arr = arr.slice(1, arr.length)
-        color = [random() * 255, random() * 255, random() * 255]
+        color = 255
         for (let i of arr) {
             tilesClass[i].owned = "computer" + ine
-            spot.push([tilesClass[i].x, tilesClass[i].y, color, 3])
+            spot.push([tilesClass[i].x, tilesClass[i].y, 255, 3])
             spotB.push(i)
         }
     }
     ine++
     noSpot(rn)
     comBonus(rn)
+    maper = 0
     return
 }
 
@@ -223,6 +247,7 @@ function buyLandPlayer() {
             buyingLand.push([i.x, i.y])
         }
     }
+    maper = 0
 }
 function place(x, y) {
     let arre = []
@@ -244,6 +269,7 @@ function place(x, y) {
             }
         }
     }
+    maper = 0
 }
 function newLand(tile) {
     if (tile.owned !== undefined) {
@@ -259,31 +285,33 @@ function newLand(tile) {
     } else if (tile.i == "Mountain") {
         goldB++
     }
+    maper = 0
 }
 
 function buttonMarket(x, y) {
     let n = 310 - w * 6
-    if (LocalButtonPress(x, y, n, h * 5)) {
+    if (LocalButtonPress(x, y, n, h * 11)) {
         player1.buyMarket()
     }
 }
 function buttonLand(x, y) {
     let n = 310 - w * 4
-    if (LocalButtonPress(x, y, n, h * 5)) {
+    if (LocalButtonPress(x, y, n, h * 11)) {
         player1.buyLand()
     }
+    maper = 0
 }
 function buttonFarm(x, y) {
     let n = 310 - w * 6
-    if (LocalButtonPress(x, y, n, h * 7)) {
+    if (LocalButtonPress(x, y, n, h * 13)) {
         player1.buyFarm()
     }
 }
 
 function randomSelector() {
-    let chancer = [ 1, 2, 0,4]
+    let chancer = [1, 2, 0, 4, 4, 4, 4]
     list.push(1, 2, 3)
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 500; i++) {
         let num = floor(random() * chancer.length)
         list.push(chancer[num])
     }
@@ -294,7 +322,7 @@ function buyLandComputer() {
     if (tilesClass[num].owned !== undefined) {
         buyLandComputer()
     } else {
-        tilesClass[num].owned = "computer" + ine
+        tilesClass[num].owned = "computer0"
         spot.push([tilesClass[num].x, tilesClass[num].y, color, 3])
         if (tilesClass[num].i == "Land" || tilesClass[num].i == "Forest") {
             woodC++
@@ -307,15 +335,16 @@ function buyLandComputer() {
 }
 function buttonBarrackU(x, y) {
     let n = 310 - w * 4
-    if (LocalButtonPress(x, y, n, h * 7) && barrackU == 0) {
+    if (LocalButtonPress(x, y, n, h * 13) && barrackU == 0) {
         player1.buyBarrackU()
     }
 }
 function buttonArmy(x, y) {
     let n = 310 - w * 4
-    if (LocalButtonPress(x, y, n, h * 7) && barrackU == 1) {
+    if (LocalButtonPress(x, y, n, h * 13) && barrackU == 1) {
         player1.buyArmy()
     }
+    maper = 0
 }
 
 
@@ -351,6 +380,7 @@ function isItArmyIClicked(x, y) {
             }
         }
     }
+    maper = 0
 }
 function movingArmy(t) {
     movingAr = []
@@ -386,27 +416,32 @@ function movingClick(x, y) {
         }
     }
     if (arre.length >= 1) {
-        playerArmy[current].time = 180
+        playerArmy[current] ? playerArmy[current].time = 180 : 0
         playerArmy[current].move(til)
         clicker = 0
         movingArmyA = 0
     }
+    maper = 0
 }
 function mousePressed() {
-    buttonMarket(mouseX, mouseY)
-    buttonLand(mouseX, mouseY)
-    buttonFarm(mouseX, mouseY)
-    buttonBarrackU(mouseX, mouseY)
-    buttonArmy(mouseX, mouseY)
-    if (click == 0) {
-        tes(mouseX, mouseY)
-    } if (buyingLand[0] == 1) {
-        newLand(place(mouseX, mouseY))
-    }
-    if (clicker == 1) {
-        movingClick(mouseX, mouseY)
-    } else {
-        isItArmyIClicked(mouseX, mouseY)
+    if (orinS == 1) {
+        buttonStart(mouseX, mouseY)
+    } else if (orinS == 2) {
+        buttonMarket(mouseX, mouseY)
+        buttonLand(mouseX, mouseY)
+        buttonFarm(mouseX, mouseY)
+        buttonBarrackU(mouseX, mouseY)
+        buttonArmy(mouseX, mouseY)
+        if (click == 0) {
+            tes(mouseX, mouseY)
+        } if (buyingLand[0] == 1) {
+            newLand(place(mouseX, mouseY))
+        }
+        if (clicker == 1) {
+            movingClick(mouseX, mouseY)
+        } else {
+            isItArmyIClicked(mouseX, mouseY)
+        }
     }
 }
 function LocalButtonPress(x, y, n, by) {
@@ -430,19 +465,20 @@ function moveToTarget(index) {
     } else {
         let indexer
         for (let t in tilesClass) {
-            if (tilesClass[t].x == computerArmy[index].target.x 
+            if (tilesClass[t].x == computerArmy[index].target.x
                 && tilesClass[t].y == computerArmy[index].target.y) {
-                    indexer = t
+                indexer = t
             }
         }
         let moves = []
         for (let move of possibleMoves(index)) {
-            moves.push([abs(move - indexer),move])
+            moves.push([abs(move - indexer), move])
         }
-        moves = moves.sort((a,b)=>a[0]-b[0])
-        computerArmy[index].time = 10
+        moves = moves.sort((a, b) => a[0] - b[0])
+        computerArmy[index].time = 200
         computerArmy[index].move(tilesClass[moves[0][1]])
     }
+    maper = 0
 }
 function possibleMoves(index) {
     let arre = []
@@ -459,4 +495,43 @@ function possibleMoves(index) {
         }
     }
     return arre
+}
+function conquest(army, tile) {
+    tilesClass[tile].timer--
+    if (tilesClass[tile].timer <= 0) {
+        tilesClass[tile].owned = "player"
+        tilesClass[tile].timer = 1000
+    }
+    maper = 0
+}
+
+function deleteCArmy(x, y) {
+    for (let i in computerArmy) {
+        if (computerArmy[i].x == x && computerArmy[i].y == y) {
+            computerArmy.splice(i, 1)
+        }
+    }
+    maper = 0
+}
+function deleteArmy(x, y) {
+    for (let i in playerArmy) {
+        if (playerArmy[i].x == x && playerArmy[i].y == y) {
+            playerArmy.splice(i, 1)
+        }
+    }
+    maper = 0
+}
+function cConquest(army, tile) {
+    tilesClass[tile].timer--
+    if (tilesClass[tile].timer <= 0) {
+        tilesClass[tile].owned = "computer0"
+        tilesClass[tile].timer = 1000
+    }
+    maper = 0
+}
+function buttonStart(x,y){
+    if((x > wer*7) && (y > oner+50) && (x <wer*2+ wer*7) && (y < oner+100)){
+        stageClick++
+        orinS++
+    }
 }

@@ -50,64 +50,50 @@ class Player {
             this.gold = this.gold - 10000
             for(let tile in tilesClass){
                 if(tilesClass[tile] == origin){
-                    playerArmy.push(new Army(tilesClass[tile].x,tilesClass[tile].y,"player",20))
+                    playerArmy.push(new Army(tilesClass[tile].x,tilesClass[tile].y,"player",100,100))
                 }
             }
         }
     }
 }
-class Army {
-    constructor(_x, _y, _t,_timer) {
-        this.x = _x
-        this.y = _y
-        this.owned = _t
-        this.time = _timer
-    }
-    move(tile){
-        this.x = tile.x
-        this.y = tile.y
-        tile.a = "player"
-        if(tile.owned !== "player" && tile.owned !== undefined){
-        } 
-    }
-    cooldown(){
-        this.time = this.time - 1
-    }
-}
 class Water {
-    constructor(_x, _y, _w, _t, _a) {
+    constructor(_x, _y, _w, _t, _a,_time) {
         this.x = _x
         this.y = _y
         this.i = _w
         this.owned = _t
         this.a = _a
+        this.timer = _time
     }
 }
 class Land {
-    constructor(_x, _y, _l, _t, _a) {
+    constructor(_x, _y, _l, _t, _a,_time) {
         this.x = _x
         this.y = _y
         this.i = _l
         this.owned = _t
         this.a = _a
+        this.timer = _time
     }
 }
 class Mountain {
-    constructor(_x, _y, _m, _t, _a) {
+    constructor(_x, _y, _m, _t, _a,_time) {
         this.x = _x
         this.y = _y
         this.i = _m
         this.owned = _t
         this.a = _a
+        this.timer = _time
     }
 }
 class Forest {
-    constructor(_x, _y, _f, _t, _a) {
+    constructor(_x, _y, _f, _t, _a,_time) {
         this.x = _x
         this.y = _y
         this.i = _f
         this.owned = _t
         this.a = _a
+        this.timer = _time
     }
 }
 class Computer {
@@ -164,19 +150,53 @@ class Computer {
             ince++
             for(let tile in tilesClass){
                 if(tilesClass[tile] == comOrigin){
-                    computerArmy.push(new enemyArmy(tilesClass[tile].x,tilesClass[tile].y,"computer0",10))
+                    computerArmy.push(new enemyArmy(tilesClass[tile].x,tilesClass[tile].y,"computer0",150,undefined,100))
                 }
             }
         }   
     }
 } 
+class Army {
+    constructor(_x, _y, _t,_timer,_hp) {
+        this.x = _x
+        this.y = _y
+        this.owned = _t
+        this.time = _timer
+        this.hp = _hp
+        this.dmg = random(0.4,0.55)
+    }
+    hit(dmg){
+        this.hp = this.hp - dmg
+        if(this.hp <= 0 ){
+            deleteArmy(this.x,this.y)
+        }
+    }
+    move(tile){
+        this.x = tile.x
+        this.y = tile.y
+        tile.a = "player"
+        if(tile.owned !== "player" && tile.owned !== undefined){
+        } 
+    }
+    cooldown(){
+        this.time = this.time - 1
+    }
+}
 class enemyArmy{
-    constructor(_x, _y, _t,_timer,_target) {
+    constructor(_x, _y, _t,_timer,_target,_hp) {
         this.x = _x
         this.y = _y
         this.owned = _t
         this.time = _timer
         this.target = _target
+        this.hp = _hp
+        this.dmg = random(0.4,0.55)
+    }
+    hit(dmg){
+        this.hp = this.hp - dmg
+        if(this.hp <= 0 ){
+            deleteCArmy(this.x,this.y)
+        }
     }
     move(tile){
         this.x = tile.x
