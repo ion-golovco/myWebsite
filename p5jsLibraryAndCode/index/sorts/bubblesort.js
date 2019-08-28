@@ -1,5 +1,5 @@
 //Here you can change the amount of bars boii!
-let limit = 10000;
+let limit = 1000;
 
 let comparasions = 0,acces = 0;
 let a = 0, b = 0, c;
