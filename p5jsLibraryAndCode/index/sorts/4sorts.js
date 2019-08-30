@@ -165,7 +165,7 @@ async function partition(arr, start, end) {
   states[pivotIndex] = 0;
   for (let i = start; i < end; i++) {
     if (arr[i] < pivotValue) {
-      await swap(arr, i, pivotIndex);
+      swap(arr, i, pivotIndex);
       states[pivotIndex] = -1;
       pivotIndex++;
       states[pivotIndex] = 0;
