@@ -1,4 +1,4 @@
-let limit = 750;
+let limit = 1250;
 
 let time = 1
 
