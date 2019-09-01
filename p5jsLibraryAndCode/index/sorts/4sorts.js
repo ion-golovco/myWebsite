@@ -3,7 +3,7 @@ let limit = 2000;
 let time = 1
 
 //bubble
-let inver = false
+let inver = true
 let a = 0, b = 0, c;
 let sw = 0, sw1 = 0;
 let x, y;
