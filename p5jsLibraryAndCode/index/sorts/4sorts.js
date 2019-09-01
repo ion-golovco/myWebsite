@@ -1,9 +1,9 @@
-let limit = 2000;
+let limit = 1250;
 
 let time = 1
 
 //bubble
-let inver = true
+let inver = false
 let a = 0, b = 0, c;
 let sw = 0, sw1 = 0;
 let x, y;
