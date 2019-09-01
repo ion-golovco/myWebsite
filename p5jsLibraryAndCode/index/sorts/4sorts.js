@@ -42,7 +42,7 @@ function setup() {
   //invers sort
   //while (limit >= i) {arr3.push((i/limit)*y2/3);i++;} arr3.reverse()
   arrayV = arr3
-  frameRate(10)
+  frameRate(60)
 }
 let j = 0; ji = 0, i = 1
 function draw() {
