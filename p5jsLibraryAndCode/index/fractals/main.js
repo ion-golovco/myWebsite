@@ -133,10 +133,10 @@ function draw() {
                     line(0,0,4,0)
                     translate(4,0)
                 }else if(i=="-"){
-                    stroke(255,127,80)
+                    stroke(0)
                     rotate(-60)
                 }else if(i=="+"){
-                    stroke(102,205,170)
+                    stroke(255)
                     rotate(60)
                 }
             }
