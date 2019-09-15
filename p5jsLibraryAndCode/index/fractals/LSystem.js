@@ -69,7 +69,7 @@ function LSystemGosper(start){
             array.push(i)
         }
     }
-    array = array.join(" ")
+    array = array.join("")
     if (array.length > l) {
         gosperCurve = array
     }
