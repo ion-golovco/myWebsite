@@ -3,6 +3,8 @@ let ran = Math.random()*5;
 let x11 = 150, x21 = 100, x31 = 350, x41 = 100, x51 = 200
 //Constants
 let inca = 0.003
+let constantIncrease = 9
+let midle;
 
 function setup() {
     createCanvas(windowWidth, windowHeight)
@@ -10,9 +12,10 @@ function setup() {
 }
 
 function draw() {
+    midle = constantIncrease / 100000
     console.log(ran)
     //Background and input setup
-    ran = ran + 0.00009
+    ran = ran + midle
     background(255)
     textSize(16)
     let o = prediction(ran, 200)
