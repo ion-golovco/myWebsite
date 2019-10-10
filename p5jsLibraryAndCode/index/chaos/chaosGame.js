@@ -1,7 +1,7 @@
 //comenzi
     //background(0) sterge canvasul
 //maximul $per
-let maxi = 1.65
+let maxi = 1.5
 //puncte ale poligonului
 let pointL = 3
 //doturi pentru fiecare iterare
