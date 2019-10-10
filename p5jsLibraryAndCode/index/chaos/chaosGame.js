@@ -1,17 +1,17 @@
 //comenzi
     //background(0) sterge canvasul
 //maximul $per
-let maxi = 4
+let maxi = 1.65
 //puncte ale poligonului
 let pointL = 3
 //doturi pentru fiecare iterare
 let sp = 10000
 //distanta la care sar doturile
-let per = 1.998
+let per = 0.1
 //incrementul de crestere a $per
-let inc = 0.001 
+let inc = 0.1 
 //scale cu cit mai mare numarul cu cit devine mai mic poligonu
-let scale = 500
+let scale = 2
 
 let points = []
 let total = 0
@@ -34,7 +34,7 @@ function setup() {
         v.z = i
         points.push(v)
     }
-    //for(let i =0;i<pointL;i++){colors.push([random(255),random(255),random(255)])}
+    for(let i =0;i<pointL;i++){colors.push([random(255),random(255),random(255)])}
     curent = createVector(0, 0)
     frameRate(30)
     stroke(255)
@@ -55,17 +55,17 @@ function draw() {
     }
     for (let i = 0; i < sp; i++) {
         let next = random(points)
-        //for(let i in colors){
-         //   if(next.z == i){
-        //        stroke(colors[i],100)
+        for(let i in colors){
+           if(next.z == i){
+                stroke(colors[i],100)
                 //stroke(255)
-        //    }
-       // }
-       //if (next !== previous) { //pentagon1
+            }
+        }
+       if (next !== previous) { //pentagon1
             curent.x = lerp(curent.x, next.x, per)
             curent.y = lerp(curent.y, next.y, per)
             point(curent.x, curent.y)
             previous = next
-        //}
+        }
     }
 }
