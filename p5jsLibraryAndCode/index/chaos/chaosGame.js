@@ -9,9 +9,9 @@ let sp = 2000
 //distanta la care sar doturile
 let per = 0.1
 //incrementul de crestere a $per
-let inc = 0.001
+let inc = 0.003
 //scale cu cit mai mare numarul cu cit devine mai mic poligonu
-let scale = 60
+let scale = 100
 
 let points = []
 let total = 0
