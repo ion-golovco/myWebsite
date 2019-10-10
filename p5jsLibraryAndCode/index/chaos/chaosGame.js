@@ -63,11 +63,11 @@ function draw() {
                 //stroke(255)
             }
         }
-       if (next !== previous) { //pentagon1
+       //if (next !== previous) { //pentagon1
             curent.x = lerp(curent.x, next.x, per)
             curent.y = lerp(curent.y, next.y, per)
             point(curent.x, curent.y)
             previous = next
-        }
+        //}
     }
 }
