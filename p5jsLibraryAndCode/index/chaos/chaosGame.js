@@ -47,7 +47,7 @@ function draw() {
         per += inc
     }
     {
-        background(0,2)
+        background(0,1)
         translate(w / 2, h / 2)
         strokeWeight(1.1)
     }
