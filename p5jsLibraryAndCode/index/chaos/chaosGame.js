@@ -11,7 +11,7 @@ let per = 0.1
 //incrementul de crestere a $per
 let inc = 0.005
 //scale cu cit mai mare numarul cu cit devine mai mic poligonu
-let scale = 10
+let scale = 60
 
 let points = []
 let total = 0
@@ -47,7 +47,7 @@ function draw() {
         per += inc
     }
     {
-        background(0,1)
+        background(0,3)
         translate(w / 2, h / 2)
         strokeWeight(1.1)
     }
