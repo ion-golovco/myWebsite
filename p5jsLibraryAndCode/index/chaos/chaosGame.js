@@ -5,13 +5,13 @@ let maxi = 1.65
 //puncte ale poligonului
 let pointL = 3
 //doturi pentru fiecare iterare
-let sp = 10000
+let sp = 3000
 //distanta la care sar doturile
 let per = 0.1
 //incrementul de crestere a $per
-let inc = 0.1 
+let inc = 0.005
 //scale cu cit mai mare numarul cu cit devine mai mic poligonu
-let scale = 2
+let scale = 4
 
 let points = []
 let total = 0
