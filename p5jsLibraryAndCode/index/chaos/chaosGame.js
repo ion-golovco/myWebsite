@@ -3,9 +3,9 @@
 //maximul $per
 let maxi = 10
 //puncte ale poligonului
-let pointL = 3
+let pointL = 4
 //doturi pentru fiecare iterare
-let sp = 1000
+let sp = 600
 //distanta la care sar doturile
 let per = 1
 //incrementul de crestere a $per
