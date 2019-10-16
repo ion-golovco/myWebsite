@@ -80,7 +80,7 @@ function topTenWords(text) {
 
     let res = []
     for (let x in sorted) {
-        if (x == 80) {
+        if (x == 1000) {
             break
         }
         res.push(sorted[x])
