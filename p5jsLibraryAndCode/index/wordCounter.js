@@ -1,4 +1,5 @@
 let value;
+let a
 function setup() {
     let he = windowHeight / 2 + windowHeight / 9
     let wi = windowWidth / 20
@@ -14,7 +15,7 @@ function draw() {
     let he = 0
     let wi = windowWidth / 2
     background(255)
-    let a = topTenWords(value.value())
+    a = topTenWords(value.value())
     y = he
 
     noStroke()
