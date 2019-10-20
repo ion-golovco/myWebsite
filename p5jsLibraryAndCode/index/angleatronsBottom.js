@@ -13,7 +13,6 @@ function setup() {
 
 function draw() {
     midle = constantIncrease / 100000
-    console.log(ran)
     //Background and input setup
     ran = ran + midle
     background(255)
