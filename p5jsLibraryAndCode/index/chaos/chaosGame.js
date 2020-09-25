@@ -1,11 +1,11 @@
 //comenzi
     //background(0) sterge canvasul
 //maximul $per
-let maxi = 1.65
+let maxi = 1.5
 //puncte ale poligonului
-let pointL = 4
+let pointL = 5
 //doturi pentru fiecare iterare
-let sp = 3000
+let sp = 5000
 //distanta la care sar doturile
 let per = 0.1
 //incrementul de crestere a $per
